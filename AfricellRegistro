@@ -1,0 +1,129 @@
+
+
+- Data a pedir:
+Nome completo
+Data de nascimento
+Endereço
+telephone
+numero do BI
+scan do BI
+
+
+- Processamento de dados
+Extrair dados de imagem em tempo real
+Processamento e extracçao de caracteristicas
+
+- Geraçao de templetes
+Um para imagem em tempo real
+Um para o Scan do BI 
+
+
+- Funçoes Admin
+ Verificaçao da existencia de uma conta
+ Verificaçao dados de um numero (como se esta associado uma agencia)
+ Apagar registro
+
+
+- System  function
+Verificar se numero esta associado a uma pessoa ou agencia antes ao registrar
+Automatically desassociate inactive accounts after six months
+Send activation code via message
+
+
+- tecnologies
+Visao Computacional: OpenCV
+Machine learning: scikit-learn or tensorflow
+backend:flask (possibly)
+Frontend: React
+Base de Dados: SQL managment studio
+UML e Modelagem: StarUML
+Testes: Postman
+Padrões de Projeto: MVC, Singleton, Strategy
+
+
+- Proposta: Criar um sistema de cadastro biométrico com:
+• Reconhecimento facial em tempo real com múltiplos ângulos;
+• Comparação com o Bilhete de Identidade;
+• Envio de código SMS para ativação final;
+• Registro auditável, seguro e validável.
+
+
+
+Libraries and apps versions used:
+
+- OpenCV
+- Mediapipe
+- Note had to uninstall numpy-2.2.1 and install numpy-1.26.4 instead
+- python 3.11.9
+- pdf2image and poppler used for pdf rendering (not used anymore)
+- face recognition, dlib version:
+ dlib-19.24.1-cp311-cp311-win_amd64.whl
+- playsound
+
+
+necessary files:
+- shape_predictor_68_face_landmarks.dat.bz2
+
+Also add:
+timestamps of when someone is registered
+Save a frame from when the person was registered?
+
+this can help with legal issues and tampering/fraud evidance
+
+
+Referencies:
+https://github.com/davisking/dlib-models
+
+
+
+- Key Modules and Functional Blocks:
+
+1. ID Validation
+
+validate_id_image(image)
+
+Checks for blur, glare, resolution
+
+correct_orientation(image)
+
+Rotates scanned IDs (0°, 90°, 180°, 270°)
+
+Picks best one with valid face using face_recognition
+
+id_image_to_encoding()
+
+Loads + orients + validates ID image
+
+Returns face encoding
+
+2. Live Feed Verification
+
+face_recognition for webcam face detection + encoding
+
+MediaPipe (face mesh) for:
+
+Eye Aspect Ratio (EAR) for blink detection
+
+Nose tip movement for motion detection
+
+Liveness detection methods:
+
+is_live_by_motion()
+
+is_live_by_blink()
+
+is_live_video(method="auto") = both combined
+
+Match is accepted after N valid liveness-confirmed frames
+
+3. User Feedback and Logging
+
+Logs stored in: logs/face_verification_log.txt
+
+Success snapshot saved in: logs/confirmed_TIMESTAMP.jpg
+
+Sound alert ("Match confirmed") played using:
+
+playsound("match_confirmed.wav")
+
+Fallback to pygame.mixer.music if needed

@@ -1,0 +1,36 @@
+Um computador sera o servidor, os outros clientes
+Where each client sends and fetches the most recent version of the project
+use git
+cant use github
+--------------------------------------------------------------
+
+Project will be about a way to register all africell clients with out creating long queues or deploying 
+more human resources 
+
+
+field research on tuesday
+
+- Problem:
+Ask how or if it is possible to have multiple IDs regeristered on one number
+
+
+
+- Questions
+How did the eSim registration work before it was stopped and why was it stopped
+Unregistered sims are a thing?
+How do they go about selling sim cards outside of the establishment
+What do they think would be necessary for them to start registering clients online 
+
+
+app movel, backend using web
+
+possible solution, an app that requires users to upload the necessary docs and a picture and/or video of to check...
+
+reconhecimento de padroes(maybe facial or some)
+
+- AI 
+API called open cv for facial recognition
+https://youtu.be/fKpUP4dcCLA?si=saMkEjph8SujBGF3&t=298
+
+
+--------------------------------------------------------------
